@@ -1,0 +1,17 @@
+name: Execute Schedule Jobs
+
+on:
+    schedule:
+    - cron: '*/2 * * * *'
+    
+jobs:
+    scheduled:
+        runs-on: ubuntu-latest
+        name: 'Scheduled Jobs'
+        steps:
+            - name: Clone Repository
+              uses: actions/checkout@v4
+        
+            - name: Print Message
+              run: |
+                echo "Hello World, from ${{ github.workspace }}"
