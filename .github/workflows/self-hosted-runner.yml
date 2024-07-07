@@ -1,0 +1,16 @@
+name: Executing Self-Hosted Running
+
+on: [push]
+
+jobs:
+    self-hosted-job:
+        name: Self-Hosted-Job
+        runs-on: self-hosted
+        steps:
+        - name: Clone Repository
+          uses: actions/checkout@v4
+        
+        - name: Execute Script
+          run: |
+            echo "Hello $(hostname), Welcome to Github Actions as a Self-Hosted Runner!"
+        
