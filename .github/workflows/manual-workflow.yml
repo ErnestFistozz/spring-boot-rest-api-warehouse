@@ -1,0 +1,42 @@
+name: Manually Triggered File
+
+on:
+    workflow_dispatch:
+        inputs:
+            name:
+                description: 'Name of the person'
+                required: true
+                type: string
+            age:
+                description: 'Person Age'
+                required: true
+                type: number
+            greeting:
+                description: 'Type of Greeting'
+                required: true
+                type: string
+            data:
+                description: 'Base64 encoded content of a file'
+                required: false
+                type: string
+
+jobs:
+    greet:
+        name: 'Say your greeting'
+        runs-on: ubuntu-latest
+        steps:
+        - name: Decode File Content
+          id: decode
+          if: ${{ inputs.data != ''}}
+          run: | 
+            echo "${{ inputs.data }}"| base64 --decode > ./decoded_file.txt
+
+        - name: Display Greeting
+          run: |
+            echo "${{inputs.greeting }}, ${{inputs.name }}!, I didn't know you are ${{ inputs.age }} years old :)"
+        
+        - name: Display File Content
+          if: ${{ steps.decode.conclusion == 'success'}}
+          run: |
+            echo "content of the file:" 
+            cat ./decoded_file.txt
