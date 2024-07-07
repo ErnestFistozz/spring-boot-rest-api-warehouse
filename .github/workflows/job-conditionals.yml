@@ -1,0 +1,20 @@
+name: Conditionals At Job level
+
+on: [push]
+
+jobs:
+    hello-world:
+        name: 'Welcome Job'
+        if: github.action_repository == 'ErnestFistozz/UnknownRepo'
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout repo
+          uses: actions/checkout@v4
+        
+    goodbye-moon:
+        name: 'Farewell Job'
+        runs-on: windows-latest
+        steps:
+        - name: farewell message
+          run: |
+            Write-Output "Good Bye, ASML. It was a brief/short stay yet pleasure to meet you"
