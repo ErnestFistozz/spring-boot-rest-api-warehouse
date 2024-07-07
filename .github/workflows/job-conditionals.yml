@@ -5,7 +5,7 @@ on: [push]
 jobs:
     hello-world:
         name: 'Welcome Job'
-        if: github.action_repository == 'ErnestFistozz/UnknownRepo'
+        if: github.action_repository == 'ErnestFistozz/spring-boot-rest-api-warehouse'
         runs-on: ubuntu-latest
         steps:
         - name: checkout repo
