@@ -1,0 +1,25 @@
+name: Multi-Event Workflow
+
+on:
+    push:
+        branches:
+        - dev
+        - master
+    pull_request:
+        branches:
+        - dev
+        - master
+
+jobs:
+    greet:
+        name: Greet New Users
+        runs-on: windows-latest
+        steps:
+        - name: Pull Repo
+          uses: actions/checkout@v4
+        
+        - name: Say your greeting
+          run: |
+            echo "Hello ${{ env.PERSON_NAME }}, welcome to Github Actions Multi Events Pipeline"
+          env:
+            PERSON_NAME: "fistozz"
