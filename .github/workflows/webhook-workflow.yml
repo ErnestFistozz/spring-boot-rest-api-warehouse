@@ -1,0 +1,25 @@
+name: Webhook Triggered workflow
+
+on:
+    repository_dispatch:
+        types:
+        - webhook
+
+jobs:
+    respond-to-webhook-dispatch:
+        runs-on: ubuntu-latest
+        name: 'Dispatched Webhook Job'
+        
+        steps:
+        - name: checkout repository
+          uses: actions/checkout@v4
+        
+        - name: Display Hostname
+          run: |
+            hostname=$(hostname)
+            echo "Welcome to Container, ${hostname}"
+            echo "I was triggered by a ${GITHUB_EVENT_NAME}"
+
+        - name: Display Triggering Event
+          run: |
+            echo "I was triggered by a ${GITHUB_EVENT_NAME}"
