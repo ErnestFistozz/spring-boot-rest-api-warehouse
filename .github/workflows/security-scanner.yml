@@ -1,0 +1,22 @@
+name: Security Threats
+
+on:
+    workflow_dispatch:
+
+jobs:
+    respository_scanning:
+        name: 'Scan Repository for Vulnerabilities'
+        runs-on: ubuntu-latest
+        steps:
+        - name: clone repo
+          uses: actions/checkout@v4
+        
+        - name: initialise CodeQL
+          uses: github/codeql-action/init@v2
+          with:
+            languages: java
+        
+        - name: scan repo
+          uses: github/codeql-action/analyze@v2
+
+
